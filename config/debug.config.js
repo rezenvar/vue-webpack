@@ -13,20 +13,20 @@ config.plugins.push(
 );
 
 config.entry = [
-    'webpack-dev-server/client?http://localhost:8888',
+    'webpack-dev-server/client?http://localhost:8288',
     'webpack/hot/only-dev-server',
     root('src/js/app.js')
 ];
 
 const server = new webpackDevServer(webpack(config), {
-    port: 8888,
+    port: 8288,
     host: 'localhost',
     publicPath: '/',
     contentBase: 'dist',
     hot: true
 });
 
-server.listen(8888);
+server.listen(8288);
 
 
 
