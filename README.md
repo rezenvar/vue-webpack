@@ -17,10 +17,6 @@
 
 npm run unit will run karma (config located in test folder)
 
-### Loaders
-
-Config includes styleloaders for scss, also loader for atomic.css(outputs in dist but not minified)
-
 ### Stylelint
 
 Stylelint with base configuration
