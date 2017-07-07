@@ -1,5 +1,5 @@
 <template lang='pug'>
-div(class="My(10px)")
+div
     router-view
 </template>
 
