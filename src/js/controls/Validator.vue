@@ -38,7 +38,7 @@ export default class Validator extends Vue {
                     error = message;
                 }
             }
-            
+
             if (name == 'lengthGreater') {
                 if (childValue.toString().length < Number(value)) error = message;
             }
@@ -49,10 +49,10 @@ export default class Validator extends Vue {
                 if (!isNaN(Number(childValue))) error = message;
             }
             if (name == 'numberGreater') {
-                if (Number(childValue) < Number(value) ) error = message;
+                if (Number(childValue) < Number(value)) error = message;
             }
             if (name == 'numberLess') {
-                if (Number(childValue) > Number(value) ) error = message;
+                if (Number(childValue) > Number(value)) error = message;
             }
             if (name == 'isTrue') {
                 if (!childValue) error = message;
@@ -60,16 +60,18 @@ export default class Validator extends Vue {
             if (name == 'isFalse') {
                 if (childValue) error = message;
             }
-            
+
             if (name == 'equal') {
                 if (childValue) {
-                    console.log('childvaluee: ' ,childValue);
-                    console.log('value: ' ,value);
                     if (value.toString() != childValue.toString()) error = message;
-                }
+                } 
+                if (!childValue && value) error = message;
             }
             if (name == 'required') {
-                if (!childValue && childValue != 0) error = message;
+                if (childValue != '0' && (!childValue || childValue == '')) error = message;
+            }
+            if (name == 'phone') {
+                if (!`${childValue}`.match( /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)) error = message;
             }
         });
         this.error = error;

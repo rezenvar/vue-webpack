@@ -59,5 +59,32 @@ module.exports = {
             }
         });
     },
+    vueSet(target, object) {
+        for (let key in object) {
+            Vue.set(target, key, object[key]);
+        }
+    },
+    getClass(classString = '') {
+        return classString.split(' ');
+    },
+    mutate(path, target, value, fallback = () => { }) {
+        try {
+            if (!target) throw 'You need to provide mutation target';
+            if (!path) throw 'You need to provide field path';
+            let mutationTarget = target;
+            path.split('/').map((item, index, arr) => {
+                if (mutationTarget.hasOwnProperty(item)) {
+                    if (index == arr.length - 1) { mutationTarget[item] = value; }
+                    else {
+                        if (typeof mutationTarget != 'object') throw `${item} is not object, path string end point can't be reached`;
+                        else { mutationTarget = mutationTarget[item]; }
+
+                    }
+                } else { throw `Target prop ${item} don't exists`; }
+            });
+        } catch (err) {
+            fallback(err);
+        }
+    },
    
 }
