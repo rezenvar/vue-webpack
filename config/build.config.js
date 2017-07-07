@@ -6,7 +6,7 @@ const Visualizer = require('webpack-visualizer-plugin');
 const glob = require('glob-all');
 const { root, styleLoader } = require('./helpers.js');
 
-config.devtool = '#source-map';
+config.devtool = '';
 config.plugins[0].definitions.__DEV__ = false;
 config.plugins[0].definitions.__IsLocal__ = false;
 config.module.rules[config.module.rules.length - 1] = styleLoader(true);
