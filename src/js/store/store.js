@@ -13,3 +13,18 @@ const store = new Vuex.Store({
 
 
 export default store;
+
+
+
+
+
+
+if (module.hot) {
+    module.hot.accept(['./modules/settings'], () => {
+        store.hotUpdate({
+            modules: {
+                settings: require('./modules/settings').default
+            }
+        })
+    })
+}

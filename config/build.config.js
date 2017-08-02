@@ -19,10 +19,8 @@ config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     exclude: [/node_modules/]
 }));
 
-config.plugins.push(new cleanWebpackPlugin(path.join(__dirname + "/../dist/"), { root: process.cwd(), dry: true }));
-config.plugins.push(new Visualizer({
-    filename: './../BundleModulesSchema.html'
-}));
+config.plugins.push( new cleanWebpackPlugin( ['dist'], { root: process.cwd() }));
+// config.plugins.push(new Visualizer({ filename: './../BundleModulesSchema.html' }));
 webpack(config).watch({}, (err, stats) => {
     if (stats) console.log(stats.toString({
         colors: true

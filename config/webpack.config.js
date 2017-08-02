@@ -3,11 +3,8 @@ const path = require('path');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { root, styleLoader } = require('./helpers.js');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const glob = require('glob-all');
-const PurifyCSSPlugin = require('purifycss-webpack');
 
 
 process.env.NODE_ENV = 'development';
@@ -50,7 +47,6 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
-
             },
             styleLoader(),
         ]
@@ -91,21 +87,6 @@ module.exports = {
                     ) === 0
                 )
             }
-        }),
-        new ExtractTextPlugin("styles.css"),
-        new StyleLintPlugin({
-            syntax: 'scss',
-            configFile: root('.stylelintrc.json')
-        }),
-        new PurifyCSSPlugin({
-            styleExtensions: ['.css', '.scss'],
-            moduleExtensions: ['.html', '.vue'],
-            minimize: true,
-            verbose: true,
-            paths: glob.sync([
-                root('src/**/*.vue'),
-                root('src/**/*.html')
-            ])
         })
     ],
     devtool: 'eval-source-map'

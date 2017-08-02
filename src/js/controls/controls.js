@@ -1,7 +1,6 @@
 
 
 let controls = {
-    'field': require('./Field.vue'),
     'validator': require('./Validator.vue'),
 }
 

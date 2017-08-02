@@ -4,15 +4,13 @@ import router from './router';
 import store from './store/store';
 import './controls/controls.js';
 import './../styles/main.scss';
-Vue.config.silent = true;
-Vue.config.productionTip = false;
 
+Vue.config.productionTip = false;
 window.apiPath =  '';
 if (__DEV__) {
     window.Utils = Utils;
     window.apiPath =  __IsLocal__ ? '' : '';
 }
-
 new Vue({
     el: '#app',
     router,
